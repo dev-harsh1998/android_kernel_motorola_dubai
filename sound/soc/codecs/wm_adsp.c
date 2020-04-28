@@ -2260,8 +2260,6 @@ int wm_adsp_write_ctl(struct wm_adsp *dsp, const char *name, int type,
 	ret = wm_coeff_write_ctrl(ctl, buf, len);
 
 	kcontrol = snd_soc_card_get_kcontrol(dsp->component->card, ctl->name);
-	snd_ctl_notify(dsp->component->card->snd_card,
-		       SNDRV_CTL_EVENT_MASK_VALUE, &kcontrol->id);
 
 	return ret;
 }
