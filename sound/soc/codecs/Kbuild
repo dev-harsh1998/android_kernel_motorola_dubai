@@ -1,12 +1,14 @@
 # add -Wall to try to catch everything we can.
 EXTRA_CFLAGS += -Wall
-EXTRA_CFLAGS += -I$(TOP)/vendor/cirrus/kernel-modules/include
+LOCAL_DIR := $(TOP)/$(subst ../,,$(src))
 
 cirrus_wm_adsp-objs = wm_adsp.o
 obj-m += cirrus_wm_adsp.o
 
 cirrus_cs35l41-objs = cs35l41.o cs35l41-tables.o
 obj-m += cirrus_cs35l41.o
+ccflags-y := -I $(LOCAL_DIR)/../../../include
+ccflags-y += -I $(src)/../../../include
 
 ifneq ($(filter m y,$(CONFIG_SND_SOC_CS35L41_SPI)),)
    cirrus_cs35l41-objs += cs35l41-spi.o
